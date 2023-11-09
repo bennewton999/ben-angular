@@ -1,0 +1,33 @@
+{
+  "name": "benenewton.com-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/benenewton.com-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/benenewton.com-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "benenewton.com:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "benenewton.com:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "benenewton.com:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/benenewton.com-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["benenewton.com"]
+}
